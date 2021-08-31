@@ -36,6 +36,7 @@ Widget _iconBottomAppBar(IconData icon, String title, bool isActive) {
             title,
             style: TextStyle(
               color: isActive ? Colors.deepOrange.shade700 : Colors.grey,
+              fontSize: 12,
             ),
           ),
         ],
