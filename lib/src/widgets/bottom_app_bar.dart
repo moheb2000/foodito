@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:foodito/src/pages/foods_page.dart';
+import 'package:foodito/src/pages/home_page.dart';
+import 'package:get/get.dart';
 
-BottomAppBar buildBottomAppBar() => BottomAppBar(
+BottomAppBar buildBottomAppBar({
+  bool b1 = false,
+  bool b2 = false,
+  bool b3 = false,
+  bool b4 = false,
+}) =>
+    BottomAppBar(
       color: Colors.white,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
         child: Row(
           children: [
-            _iconBottomAppBar(Icons.home_rounded, 'خانه', true),
-            _iconBottomAppBar(Icons.fastfood_rounded, 'لیست غذاها', false),
+            _iconBottomAppBar(Icons.home_rounded, 'خانه', b1),
+            _iconBottomAppBar(Icons.fastfood_rounded, 'لیست غذاها', b2),
             Spacer(),
-            _iconBottomAppBar(Icons.history_rounded, 'تاریخچه', false),
-            _iconBottomAppBar(Icons.settings_rounded, 'تنظیمات', false),
+            _iconBottomAppBar(Icons.history_rounded, 'تاریخچه', b3),
+            _iconBottomAppBar(Icons.settings_rounded, 'تنظیمات', b4),
           ],
         ),
       ),
@@ -18,7 +27,21 @@ BottomAppBar buildBottomAppBar() => BottomAppBar(
 
 Widget _iconBottomAppBar(IconData icon, String title, bool isActive) {
   return GestureDetector(
-    onTap: () {},
+    onTap: () {
+      if (!isActive) {
+        if (title == 'خانه') {
+          Get.off(
+            () => HomePage(),
+            transition: Transition.fadeIn,
+          );
+        } else if (title == 'لیست غذاها') {
+          Get.off(
+            () => FoodsPage(),
+            transition: Transition.fadeIn,
+          );
+        }
+      }
+    },
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
       child: Column(
